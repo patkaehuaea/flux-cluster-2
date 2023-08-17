@@ -55,6 +55,8 @@ tasks:
   configure:
     desc: Configure repository from Ansible vars
     dir: "{{.BOOTSTRAP_DIR}}"
-    cmd: ansible-playbook configure.yaml
+    # TODO: This wasn't working without specifying
+    # directory in the command itself.
+    cmd: ansible-playbook "{{.BOOTSTRAP_DIR}}"/configure.yaml
     env:
       ANSIBLE_DISPLAY_SKIPPED_HOSTS: "false"
