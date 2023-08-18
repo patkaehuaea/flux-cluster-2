@@ -1,0 +1,78 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: networking
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: pihole
+      version: 2.9.3
+      sourceRef:
+        kind: HelmRepository
+        name: pihole
+        namespace: flux-system
+  dependsOn:
+    # This is how the PVC claim storage is auto provisioned.
+    # https://github.com/rancher/local-path-provisioner
+    - name: local-path-provisioner
+      namespace: kube-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    ingress:
+      annotations:
+        hajimari.io/icon: simple-icons:pihole
+      enabled: true
+      hosts:
+      - pihole.patk.dev
+      ingressClassName: internal
+      tls:
+      - hosts:
+        - pihole.patk.dev
+
+    persistentVolumeClaim:
+      enabled: true
+      storageClass: local-path
+      size: 10Gi
+
+    serviceDhcp:
+      enabled: false
+
+    # dig @192.168.3.14 hajimari.patk.dev
+    serviceDns:
+      enabled: true
+      mixedService: true
+      annotations:
+        # Assign ip addresses to this service type.
+        # https://docs.cilium.io/en/stable/network/lb-ipam/#loadbalancer-ip-address-management-lb-ipam
+        io.cilium/lb-ipam-ips: "192.168.3.14"
+      type: LoadBalancer
+
+    # -- default upstream DNS 1 server to cloudflare
+    DNS1: "1.1.1.1"
+    # -- default upstream DNS 2 server to uquad9
+    DNS2: "9.9.9.9"
+
+    dnsmasq:
+      upstreamServers:
+        # Setup conditional forwarding to k8s-gateway for
+        # the patk.dev domain. Creates an
+        # /etc/dnsmasq.d/02-custom.conf file and populates with
+          # addn-hosts=/etc/addn-hosts
+          # rev-server=192.168.3.0/24,192.168.3.11
+          # server=/patk.dev/192.168.3.11
+          # server=//192.168.3.11
+        - rev-server=192.168.3.0/24,192.168.3.11
+        - server=/patk.dev/192.168.3.11
+        - server=//192.168.3.11
