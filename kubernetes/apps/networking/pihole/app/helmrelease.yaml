@@ -79,6 +79,12 @@ spec:
           # rev-server=192.168.3.0/24,192.168.3.11
           # server=/patk.dev/192.168.3.11
           # server=//192.168.3.11
+        # k8s network
         - rev-server=192.168.3.0/24,192.168.3.11
         - server=/patk.dev/192.168.3.11
         - server=//192.168.3.11
+        # main
+        - rev-server=192.168.1.0/24,192.168.1.1
+        - server=/kaehuaea.local/192.168.1.1
+        - server=//192.168.1.1
+
