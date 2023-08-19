@@ -56,7 +56,7 @@ spec:
       annotations:
         # Assign ip addresses to this service type.
         # https://docs.cilium.io/en/stable/network/lb-ipam/#loadbalancer-ip-address-management-lb-ipam
-        io.cilium/lb-ipam-ips: "192.168.3.14"
+        io.cilium/lb-ipam-ips: "192.168.3.53"
       type: LoadBalancer
 
     # -- default upstream DNS 1 server to cloudflare
