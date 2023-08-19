@@ -35,7 +35,7 @@ spec:
     ingress:
       annotations:
         hajimari.io/icon: simple-icons:pihole
-        hajimari.io/enable: true
+        hajimari.io/enable: "true"
       enabled: true
       hosts:
       - pihole.patk.dev
