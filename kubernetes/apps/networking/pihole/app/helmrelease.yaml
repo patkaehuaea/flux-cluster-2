@@ -30,6 +30,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    admin:
+      existingSecret: pihole-admin-secret
     ingress:
       annotations:
         hajimari.io/icon: simple-icons:pihole
