@@ -602,3 +602,11 @@ The benefits of a public repository include:
 ## 🤝 Thanks
 
 Big shout out to all the contributors, sponsors and everyone else who has helped on this project.
+
+## Fixes
+
+Run this command to resolve initial ssl error on task:deps
+
+❯ /Applications/Python\ 3.10/Install\ Certificates.command
+
+task brew:deps doesn't work
