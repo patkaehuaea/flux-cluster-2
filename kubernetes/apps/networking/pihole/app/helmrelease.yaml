@@ -34,8 +34,8 @@ spec:
       existingSecret: pihole-admin-secret
     ingress:
       annotations:
-        hajimari.io/enable: true
         hajimari.io/icon: simple-icons:pihole
+        hajimari.io/enable: true
       enabled: true
       hosts:
       - pihole.patk.dev
