@@ -25,65 +25,66 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    account:
-      valueFrom:
-          secretKeyRef:
-            name: cloudflared-secret
-            key: AccountTag
-    secret:
+    cloudflare:
+      account:
+        valueFrom:
+            secretKeyRef:
+              name: cloudflared-secret
+              key: AccountTag
+      secret:
+        tunnelId:
+        valueFrom:
+            secretKeyRef:
+              name: cloudflared-secret
+              key: TunnelSecret
       tunnelId:
-      valueFrom:
-          secretKeyRef:
-            name: cloudflared-secret
-            key: TunnelSecret
-    tunnelId:
-      valueFrom:
-          secretKeyRef:
-            name: cloudflared-secret
-            key: TunnelID
+        valueFrom:
+            secretKeyRef:
+              name: cloudflared-secret
+              key: TunnelID
 
-    secretName: cloudflared-secret
-    tunnelName: k8s
+      secretName: cloudflared-secret
+      tunnelName: k8s
 
-    ingress:
-        - hostname: "${SECRET_DOMAIN}"
-          service: https://nginx-external-controller.networking.svc.cluster.local:443
-          originRequest:
-            originServerName: "external.${SECRET_DOMAIN}"
-            http2Origin: true
-            access:
-              required: true
-              teamName: patk-dev
-              audTag:
-                - aud1:
-                    valueFrom:
-                      secretKeyRef:
-                        name: cloudflared-secret
-                        key: AUDTag
+      ingress:
+          - hostname: "${SECRET_DOMAIN}"
+            service: https://nginx-external-controller.networking.svc.cluster.local:443
+            originRequest:
+              originServerName: "external.${SECRET_DOMAIN}"
+              http2Origin: true
+              access:
+                required: true
+                teamName: patk-dev
+                audTag:
+                  - aud1:
+                      valueFrom:
+                        secretKeyRef:
+                          name: cloudflared-secret
+                          key: AUDTag
 
-        - hostname: "*.${SECRET_DOMAIN}"
-          service: https://nginx-external-controller.networking.svc.cluster.local:443
-          originRequest:
-            originServerName: "external.${SECRET_DOMAIN}"
-            http2Origin: true
-            access:
-              required: true
-              teamName: patk-dev
-              audTag:
-                - aud1:
-                    valueFrom:
-                      secretKeyRef:
-                        name: cloudflared-secret
-                        key: AUDTag
+          - hostname: "*.${SECRET_DOMAIN}"
+            service: https://nginx-external-controller.networking.svc.cluster.local:443
+            originRequest:
+              originServerName: "external.${SECRET_DOMAIN}"
+              http2Origin: true
+              access:
+                required: true
+                teamName: patk-dev
+                audTag:
+                  - aud1:
+                      valueFrom:
+                        secretKeyRef:
+                          name: cloudflared-secret
+                          key: AUDTag
 
-        - service: http_status:404
+          - service: http_status:404
 
-    resources:
-      requests:
-        cpu: 5m
-        memory: 10Mi
-      limits:
-        memory: 256Mi
+      resources:
+        requests:
+          cpu: 5m
+          memory: 10Mi
+        limits:
+          memory: 256Mi
 
     #   NO_AUTOUPDATE: "true"
     #   TUNNEL_CRED_FILE: /etc/cloudflared/creds/credentials.json
