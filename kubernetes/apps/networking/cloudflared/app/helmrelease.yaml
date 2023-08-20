@@ -59,5 +59,3 @@ spec:
             #           secretKeyRef:
             #             name: cloudflare-cloudflare-tunnel
             #             key: AUDTag
-
-        - service: http_status:404
