@@ -32,7 +32,6 @@ spec:
               name: cloudflared-secret
               key: AccountTag
       secret:
-        tunnelId:
         valueFrom:
             secretKeyRef:
               name: cloudflared-secret
