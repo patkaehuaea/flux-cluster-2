@@ -35,27 +35,29 @@ spec:
           originRequest:
             originServerName: "external.${SECRET_DOMAIN}"
             http2Origin: true
-            access:
-              required: false
-              teamName: patk-dev
-              audTag:
-                - aud1:
-                    valueFrom:
-                      secretKeyRef:
-                        name: cloudflare-cloudflare-tunnel
-                        key: AUDTag
+            # These blocks aren't valid and create unmarshal errors.
+            # TODO: Figure out another way to enable this.
+            # access:
+            #   required: false
+            #   teamName: patk-dev
+            #   audTag:
+            #     - aud1:
+            #         valueFrom:
+            #           secretKeyRef:
+            #             name: cloudflare-cloudflare-tunnel
+            #             key: AUDTag
 
         - hostname: "*.${SECRET_DOMAIN}"
           service: https://nginx-external-controller.networking.svc.cluster.local:443
           originRequest:
             originServerName: "external.${SECRET_DOMAIN}"
             http2Origin: true
-            access:
-              required: false
-              teamName: patk-dev
-              audTag:
-                - aud1:
-                    valueFrom:
-                      secretKeyRef:
-                        name: cloudflare-cloudflare-tunnel
-                        key: AUDTag
+            # access:
+            #   required: false
+            #   teamName: patk-dev
+            #   audTag:
+            #     - aud1:
+            #         valueFrom:
+            #           secretKeyRef:
+            #             name: cloudflare-cloudflare-tunnel
+            #             key: AUDTag
