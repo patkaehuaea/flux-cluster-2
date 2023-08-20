@@ -37,15 +37,11 @@ spec:
             http2Origin: true
             # These blocks aren't valid and create unmarshal errors.
             # TODO: Figure out another way to enable this.
-            # access:
-            #   required: false
-            #   teamName: patk-dev
-            #   audTag:
-            #     - aud1:
-            #         valueFrom:
-            #           secretKeyRef:
-            #             name: cloudflare-cloudflare-tunnel
-            #             key: AUDTag
+            access:
+              required: false
+              teamName: patk-dev
+              audTag:
+                - aud1: "${AUDTag1}"
 
         - hostname: "*.${SECRET_DOMAIN}"
           service: https://nginx-external-controller.networking.svc.cluster.local:443
