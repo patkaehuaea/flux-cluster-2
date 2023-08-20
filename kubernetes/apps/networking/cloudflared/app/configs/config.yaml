@@ -1,24 +1,21 @@
 ---
 originRequest:
   http2Origin: true
+  access:
+        required: true
+        teamName: patk-dev
+        audTag:
+          - aud1 123456
 
 ingress:
   - hostname: "${SECRET_DOMAIN}"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
     originRequest:
       originServerName: "external.${SECRET_DOMAIN}"
-      access:
-        required: true
-        teamName: patk-dev
-        audTag:
-          - aud1 123456
+
   - hostname: "*.${SECRET_DOMAIN}"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
     originRequest:
       originServerName: "external.${SECRET_DOMAIN}"
-      access:
-        required: true
-        teamName: patk-dev
-        audTag:
-          - aud1 123456
+
   - service: http_status:404
