@@ -41,7 +41,11 @@ spec:
             # These will require authentication through cloudflared
             # to any ingress request.
             access:
-              required: true
+              # TODO: Setting 'true' will block at the origin. Problem is you must
+              # be configure with a policy to 'Allow' instead of 'Bypass'.
+              # Cloudflare won't attach the header if 'Bypass'. Figure this out later.
+              # ref: https://developers.cloudflare.com/cloudflare-one/identity/authorization-cookie/validating-json/
+              required: false
               teamName: patk-dev
               audTag:
                 - aud1 "${AUDTag1}"
@@ -53,7 +57,7 @@ spec:
             originServerName: "external.${SECRET_DOMAIN}"
             http2Origin: true
             access:
-              required: true
+              required: false
               teamName: patk-dev
               audTag:
                 - aud1 "${AUDTag1}"
