@@ -9,7 +9,7 @@ ingress:
       originServerName: "external.${SECRET_DOMAIN}"
       access:
         required: true
-        teamName: <your-team-name>
+        teamName: patk-dev
         audTag:
           - aud1 123456
   - hostname: "*.${SECRET_DOMAIN}"
@@ -18,7 +18,7 @@ ingress:
       originServerName: "external.${SECRET_DOMAIN}"
       access:
         required: true
-        teamName: <your-team-name>
+        teamName: patk-dev
         audTag:
           - aud1 123456
   - service: http_status:404
