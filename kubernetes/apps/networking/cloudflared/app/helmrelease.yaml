@@ -41,6 +41,8 @@ spec:
           secretKeyRef:
             name: cloudflared-secret
             key: TunnelID
+
+    secretName: cloudflared-secret
     tunnelName: k8s
 
     ingress:
