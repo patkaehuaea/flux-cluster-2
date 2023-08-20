@@ -8,5 +8,7 @@ kubeconfig
 *.agekey
 *.pub
 *.key
+# helm
+**values.yaml
 # Ansible
 .venv*
