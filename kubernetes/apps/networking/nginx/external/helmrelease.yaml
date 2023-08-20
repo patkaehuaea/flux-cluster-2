@@ -25,7 +25,7 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: cloudflared
+    - name: cloudflare
       namespace: networking
   values:
     fullnameOverride: nginx-external
