@@ -87,6 +87,7 @@ spec:
         - rev-server=192.168.1.0/24,192.168.1.1
         - server=/kaehuaea.local/192.168.1.1
         - server=//192.168.1.1
+      customSettings:
         # Pihole was not evict an NXDOMAIN response from cache.
         # This lead to issues on network even when the gateway
         # was responding. We need this setting so pihole WILL
