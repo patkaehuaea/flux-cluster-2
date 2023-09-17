@@ -5,6 +5,7 @@ resources:
   - ./bitnami.yaml
   - ./bjw-s.yaml
   - ./cilium.yaml
+  - ./cloudflare.yaml
   - ./coredns.yaml
   - ./csi-driver-nfs.yaml
   - ./external-dns.yaml
@@ -15,6 +16,7 @@ resources:
   - ./k8s-gateway.yaml
   - ./kubernetes-dashboard.yaml
   - ./metrics-server.yaml
+  - ./pihole.yaml
   - ./prometheus-community.yaml
   - ./stakater.yaml
   - ./weave-gitops.yaml
