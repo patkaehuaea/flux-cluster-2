@@ -25,6 +25,7 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    replicaCount: 1
     cloudflare:
       secretName: cloudflare-cloudflare-tunnel
       tunnelName: k8s
