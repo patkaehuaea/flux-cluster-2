@@ -27,7 +27,7 @@ spec:
   values:
     replicaCount: 1
     cloudflare:
-      secretName: cloudflare-cloudflare-tunnel
+      secretName: cloudflared-secret
       tunnelName: k8s
 
       ingress:
