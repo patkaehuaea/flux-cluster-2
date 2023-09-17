@@ -113,5 +113,5 @@ spec:
         grafana_folder: Cilium
     rollOutCiliumPods: true
     securityContext:
-      privileged: false
+      privileged: true
     tunnel: disabled
