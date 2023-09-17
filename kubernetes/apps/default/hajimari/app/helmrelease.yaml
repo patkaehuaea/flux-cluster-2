@@ -40,8 +40,6 @@ spec:
         matchNames:
           - default
           - monitoring
-          - networking
-          - kube-system
     ingress:
       main:
         enabled: true
