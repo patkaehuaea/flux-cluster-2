@@ -5,12 +5,12 @@ kubernetes:
       hosts:
         k8s-master-1:
           ansible_user: pat
-          ansible_host: 192.168.3.2
+          ansible_host: 10.0.80.2
     worker:
       hosts:
         k8s-worker-1:
           ansible_user: pat
-          ansible_host: 192.168.3.5
+          ansible_host: 10.0.80.5
         k8s-worker-2:
           ansible_user: pat
-          ansible_host: 192.168.3.6
+          ansible_host: 10.0.80.6
